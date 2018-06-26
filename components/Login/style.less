@@ -1,0 +1,143 @@
+.login {
+  height: 100%;
+  .header {
+    width: 100%;
+    height: 60px;
+    background: #e5e5e5;
+    position: relative;
+    .headerLogo {
+      position: absolute;
+      height: 50px;
+      left: 19px;
+      top: 4px;
+    }
+    .headerText {
+      font-size: 20px;
+      position: absolute;
+      top: 15px;
+      left: 166px;
+      color: #737373;
+    }
+
+    .helpContainer {
+      width: 35px;
+      height: 35px;
+      border: 1px solid white;
+      position: absolute;
+      right: 46px;
+      top: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      .headerRight {
+        position: absolute;
+        left: 13px;
+        top: 10px;
+      }
+    }
+  }
+  .loginBody {
+    width: 100%;
+    height: 90%;
+
+    .loginInput {
+      width: 279px;
+      height: 350px;
+      position: absolute;
+      right: 250px;
+      top: 160px;
+      .inputHeader {
+        height: 93px;
+        background-color: #fff;
+        opacity: 0.4;
+        font-size: 24px;
+        color: #737373;
+        line-height: 93px;
+        text-align: center;
+      }
+    }
+    .inputBody {
+      height: 228px;
+      background-color: #fff;
+      text-align: center;
+      padding-top: 29px;
+      .inputContainer {
+        margin: 0 auto;
+        width: 235px;
+        height: 300px;
+        .userName {
+          height: 30px;
+          width: 100%;
+          border-radius: 5px;
+          border-color: #ebebeb;
+          border-style: solid;
+          border-width: 1px;
+          font-size: 12px;
+          color: #839487;
+          outline: none;
+        }
+
+        .password {
+          height: 30px;
+          width: 100%;
+          margin-top: 17px;
+          border-radius: 5px;
+          border-color: #ebebeb;
+          border-style: solid;
+          border-width: 1px;
+          font-size: 12px;
+          color: #839487;
+          outline: none;
+        }
+      }
+
+      .checkBoxGroup {
+        display: inline-block;
+        padding-top: 13px;
+        width: 100%;
+        .rememberMe {
+          width: 70px;
+          text-align: center;
+          float: left;
+          .passwordFont {
+            font-size: 12px;
+          }
+
+        }
+        .forgetPassword {
+          width: 60px;
+          float: right;
+          .passwordFont {
+            font-size: 12px;
+          }
+        }
+      }
+      .button {
+        width: 235px;
+        height: 32px;
+        border: 1px none white;
+        border-radius: 5px;
+        background-color: #6dbfef;
+        margin-top: 20px;
+        font-size: 16px;
+        color: white;
+        outline: none;
+        cursor: pointer;
+      }
+      .loginError {
+        width: 235px;
+        height: 52px;
+        color: red;
+        margin-top: 20px;
+      }
+    }
+  }
+  .copyright {
+    position: absolute;
+    bottom: 25px;
+    text-align: center;
+    left: 10px;
+    right: 10px;
+    font-size: 16px;
+    color: #737373;
+  }
+}
