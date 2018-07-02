@@ -28,6 +28,7 @@ class Home extends Component {
        this.context.router.push(param.key)
     }
     render() {
+        const _this = this;
         const props = {
             name: 'file',
             action: 'baseController/upload',
@@ -46,6 +47,10 @@ class Home extends Component {
                         }
                     })
                 } else if (info.file.status === 'error') {
+                    if(info.file.response.path.indexOf("login.jsp")!==-1){
+                        _this.context.router.push("/")//session消失，回到登录页
+                        return;
+                    }
                     message.error(`${info.file.name} file upload failed.`);
                 }
             }

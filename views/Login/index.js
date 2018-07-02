@@ -5,8 +5,8 @@ import React, {Component} from 'react'
 import Login from 'components/Login'
 import {message} from 'antd'
 import {enclosure} from 'enclosure-utils'
+import $ from 'jquery'
 
-const isLogin = window.isLogin
 class Index extends Component {
     static contextTypes={
         router:React.PropTypes.object
@@ -17,25 +17,25 @@ class Index extends Component {
     }
 
     componentWillMount() {
-        if (isLogin) {
-            this.props.history.push('MonitorSet')
-        }
     }
 
     login(user) {
         const username = user.username
         const password = user.password
-        const param = {
-            loginName: username,
-            password: password
-        }
-        enclosure({serviceId:'loginService',method:'toLogin',param}).then((e)=>{
-            if(e.status==='1'){
-                window.sessionStorage.setItem('user',username);
-                this.context.router.push('/todo')
-            }
-            else{
-                message.error(e.tips)
+        const _this=this
+        $.ajax({
+            url:'login',
+            type:"post",
+            contentType:"application/json;charset=UTF-8",
+            data:JSON.stringify({"loginName":username, "password":password}),
+            success:function(e){
+                if(e.status==='1'){
+                    window.sessionStorage.setItem('user',username);
+                    _this.context.router.push('/todo')
+                }
+                else{
+                    message.error(e.tips)
+                }
             }
         })
     }
