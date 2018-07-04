@@ -25,7 +25,17 @@ class Home extends Component {
     }
     /* <Link />不需要此方法*/
     menuClick(param){
-       this.context.router.push(param.key)
+        if(param.key!=='/logout'){
+            this.context.router.push(param.key)
+            return
+        }
+        const _this = this;
+        enclosure({serviceId:'userService',method:'logout'},'noAuth').then((e)=>{
+            if(e.status==='1'){
+                _this.context.router.push('/')
+            }
+        })
+
     }
     render() {
         const _this = this;
@@ -88,7 +98,10 @@ class Home extends Component {
                             <Icon type="home"/>
                             <span className="nav-text">返回</span>
                         </Menu.Item>
-
+                        <Menu.Item key="/logout">
+                            <Icon type="logout"/>
+                            <span className="nav-text">注销</span>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>

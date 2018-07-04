@@ -5,7 +5,6 @@ import React, {Component} from 'react'
 import Login from 'components/Login'
 import {message} from 'antd'
 import {enclosure} from 'enclosure-utils'
-import $ from 'jquery'
 
 class Index extends Component {
     static contextTypes={
@@ -23,19 +22,13 @@ class Index extends Component {
         const username = user.username
         const password = user.password
         const _this=this
-        $.ajax({
-            url:'login',
-            type:"post",
-            contentType:"application/json;charset=UTF-8",
-            data:JSON.stringify({"loginName":username, "password":password}),
-            success:function(e){
-                if(e.status==='1'){
-                    window.sessionStorage.setItem('user',username);
-                    _this.context.router.push('/todo')
-                }
-                else{
-                    message.error(e.tips)
-                }
+        enclosure({serviceId:'userService',method:'login',param:{"loginName":username, "password":password}},'noAuth').then((e)=>{
+            if(e.status==='1'){
+                window.sessionStorage.setItem('user',username);
+                _this.context.router.push('/todo')
+            }
+            else{
+                message.error(e.tips)
             }
         })
     }
