@@ -81,7 +81,7 @@ class Index extends Component {
         const {validateStatus} = this.state
         const { getFieldDecorator } = this.props.form;
         return (
-          <section>
+          <section className={styles.register}>
               <Form onSubmit={this.handleSubmit} className={styles["login-form"]}>
                   <FormItem
                     hasFeedback
@@ -110,7 +110,7 @@ class Index extends Component {
                               validator: this.compareToFirstPassword,
                           }],
                       })(
-                          <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                          <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}npm
                                  type="password"
                                  placeholder="confirmPassword"
                                  onBlur={this.handleConfirmBlur}
