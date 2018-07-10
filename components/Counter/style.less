@@ -1,0 +1,21 @@
+.count-container {
+  width: 100%;
+  height: 100%;
+  position:relative;
+  .count {
+    width: e("calc((100% - 1.8% * 6) / 7)");
+    background: #0a7cb5;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .num {
+      color: #fdffff;
+      font-size: 1.5rem;
+    }
+  }
+  .count:not(:last-child) {
+    margin-right: 1.8%;
+  }
+}

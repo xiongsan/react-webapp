@@ -33,7 +33,6 @@ class Index extends Component {
         })
     }
 
-
     render() {
         return (
             <Login login={(user)=>this.login(user)} orgName="江苏飞博软件股份有限公司"

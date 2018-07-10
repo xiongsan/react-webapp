@@ -20,13 +20,16 @@ class App extends Component {
             <Provider store={store}>
                 <Router history={history}>
                     <Route path="/" component={views.Login}/>
+                    <Route path="/register" component={views.Register}/>
                     <Route path="/todo" component={views.Todo}/>
                     <Route path="/layout" component={layout}>
-                        <Route path="/navi1" component={views.Navi1}/>
-                        <Route path="/navi2" component={views.Navi2}/>
-                        <Route path="/navi3" component={views.Navi3}/>
-                        <Route path="/navi4" component={views.Navi4}/>
+                        <Route path="/todolist" component={views.Todolist}/>
+                        <Route path="/exception" component={views.Exception}/>
+                        <Route path="/images" component={views.Images}/>
+                        <Route path="/files" component={views.Files}/>
                         <Route path="/chat" component={views.Chat}/>
+                        <Route path="/sysManage" component={views.SysManage}/>
+                        <Route path="/dataTransForm" component={views.DataTransform}/>
                     </Route>
                 </Router>
             </Provider>

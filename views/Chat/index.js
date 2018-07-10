@@ -26,8 +26,12 @@ class Chat extends Component {
         }
         ws.onmessage = function (event) {
             const message = event.data
+            let {type,payload} = JSON.parse(message)
             // console.log("来自服务气的消息",message)
-            $('#div1').append(message + '<br/>')
+            if(type==='message'){
+                $('#div1').append(payload + '<br/>')
+            }
+
         }
 
         ws.onerror = function (evt) {

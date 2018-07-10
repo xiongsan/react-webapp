@@ -1,0 +1,103 @@
+.platform{
+  width: 100%;
+  @font-color:rgb(207,226,240);
+  .platform-appList{
+    position:relative;
+    height: 100%;
+    .counter{
+      width: 30%;
+      position:absolute;
+      right: 20px;
+    }
+    .message{
+      width: 30%;
+      height: 200px;
+      position:absolute;
+      left: 20px;
+    }
+    .dynamicView{
+      text-align: center;
+      .block{
+        .img-container{
+          img{
+            position:relative;
+            z-index: 9;
+            -webkit-animation: center linear 4s infinite;
+          }
+        }
+        .word-container{
+          z-index: 10;
+          position:absolute;
+          color:red;
+          font-size: 1.6rem;
+          transform: scale(0.8);
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          .bottom-word{
+            font-size: 1.7em;
+          }
+        }
+
+        .line-and-circle{
+          position:absolute;
+          .line{
+            height: 1px;
+            width: 70px;
+            position:relative;
+            //-webkit-animation: changeBgColor 3s ease-in infinite alternate;
+            background: #50C35F;
+            box-shadow: 0 0 3px 0.5px #50C35F;
+          }
+          .line-color{
+            background: #50C35F;
+            box-shadow: 0 0 3px 0.5px #50C35F;
+          }
+          .line-exception-color{
+            background: rgb(255,67,92);
+            box-shadow: 0 0 3px 0.5px rgb(255,67,92);
+          }
+          .dashArray-two{
+            height: 1px;
+            border: dashed 1px rgba(53,80,155,0.5);
+            transform: rotate(2deg);
+            position:relative;
+          }
+          .dashArray-one{
+            height: 1px;
+            border: dashed 1px rgba(53,80,155,0.3);
+            transform: rotate(-2deg);
+            position: relative;
+          }
+          .out-circle-color{
+            border: solid 1px rgba(128,128,128,0.5);
+          }
+          .out-circle-exception{
+            border: solid 2px rgba(255,67,92,0.5);
+          }
+          .out-circle{
+            border-radius: 50%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            color:white;
+            border: solid 1px rgba(128,128,128,0.5);
+          }
+        }
+      }
+    }
+    @keyframes center {
+      0% {transform : rotate(0deg);}
+      100% {transform : rotate(360deg);}
+    }
+    @-webkit-keyframes myfirst {
+      from {
+        background: black;
+      }
+      to {
+        background: white;
+      }
+    }
+  }
+}

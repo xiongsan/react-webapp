@@ -16,7 +16,7 @@ class Home extends Component {
         }
     }
     componentWillMount(){
-        this.context.router.push("/navi1")
+        this.context.router.push("/todolist")
     }
     toggle() {
         this.setState({
@@ -74,25 +74,33 @@ class Home extends Component {
                 >
                     <div className="logo"/>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={this.menuClick.bind(this)}>
-                        <Menu.Item key="/navi1">
+                        <Menu.Item key="/todolist">
                             <Icon type="database" />
-                            <span className="nav-text">todo_list</span>
+                            <span className="nav-text">待办事项</span>
                         </Menu.Item>
-                        <Menu.Item key="/navi2">
+                        <Menu.Item key="/exception">
                             <Icon type="video-camera"/>
-                            <span className="nav-text">exception</span>
+                            <span className="nav-text">异常列表</span>
                         </Menu.Item>
-                        <Menu.Item key="/navi3">
+                        <Menu.Item key="/images">
                             <Icon type="upload"/>
-                            <span className="nav-text">images</span>
+                            <span className="nav-text">图片预览</span>
                         </Menu.Item>
-                        <Menu.Item key="/navi4">
+                        <Menu.Item key="/files">
                             <Icon type="file"/>
-                            <span className="nav-text">files</span>
+                            <span className="nav-text">文件列表</span>
                         </Menu.Item>
                         <Menu.Item key="/chat">
                             <Icon type="team"/>
-                            <span className="nav-text">聊天</span>
+                            <span className="nav-text">聊天室</span>
+                        </Menu.Item>
+                        <Menu.Item key="/sysManage">
+                            <Icon type="team"/>
+                            <span className="nav-text">系统管理</span>
+                        </Menu.Item>
+                        <Menu.Item key="/dataTransform">
+                            <Icon type="team"/>
+                            <span className="nav-text">数据交换</span>
                         </Menu.Item>
                         <Menu.Item key="/todo">
                             <Icon type="home"/>

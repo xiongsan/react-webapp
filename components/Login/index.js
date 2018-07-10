@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import styles from './style.less'
 class Index extends Component {
-
+    static contextTypes={
+        router:React.PropTypes.object
+    }
     loginKeyEnter(e) {
         if (e.keyCode == 13) {
             let userInfo
@@ -25,6 +27,9 @@ class Index extends Component {
         userInfo={username,password}
         this.props.login(userInfo)
     }
+    goRegister(){
+        this.context.router.push('/register')
+    }
 
     render() {
         const {projectName, orgName, orgLogoUrl} = this.props
@@ -33,8 +38,8 @@ class Index extends Component {
                 <div className={styles.header}>   {/*相当于顶部*/}
                     <img src={orgLogoUrl} className={styles.headerLogo} />
                     <span className={styles.headerText}>{orgName}</span>
-                    <div className={styles.helpContainer}>
-                        <span className={styles.headerRight}>?</span>
+                    <div className={styles.helpContainer} onClick={()=>this.goRegister()}>
+                        <span className={styles.headerRight}>注册</span>
                     </div>
                 </div>
                 <div className={styles.loginBody}>   {/*相当于底部*/}
