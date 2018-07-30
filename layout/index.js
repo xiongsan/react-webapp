@@ -1,42 +1,57 @@
 import React, {Component} from 'react'
 import styles from './style.less'
 import {enclosure} from 'enclosure-utils'
-import {Layout, Menu, Icon,Upload, message, Button,} from 'antd';
+import {Layout, Menu, Icon, Upload, message, Button, Modal} from 'antd';
+
 const {Header, Sider, Content} = Layout;
+const {confirm} = Modal
 
 
 class Home extends Component {
-    static contextTypes={
-        router:React.PropTypes.object
+    static contextTypes = {
+        router: React.PropTypes.object
     }
+
     constructor(props) {
         super(props)
         this.state = {
             collapsed: false
         }
     }
-    componentWillMount(){
+
+    componentWillMount() {
         this.context.router.push("/todolist")
     }
+
     toggle() {
         this.setState({
             collapsed: !this.state.collapsed,
         });
     }
+
     /* <Link />不需要此方法*/
-    menuClick(param){
-        if(param.key!=='/logout'){
+    menuClick(param) {
+        if (param.key !== '/logout') {
             this.context.router.push(param.key)
             return
         }
         const _this = this;
-        enclosure({serviceId:'userService',method:'logout'},'noAuth').then((e)=>{
-            if(e.status==='1'){
-                _this.context.router.push('/')
+        confirm({
+            title: 'Are you sure logout?',
+            content: '注销登录',
+            onOk() {
+                enclosure({serviceId: 'userService', method: 'logout'}, 'noAuth').then((e) => {
+                    if (e.status === '1') {
+                        _this.context.router.push('/')
+                    }
+                })
+            },
+            onCancel() {
+                console.log('Cancel');
             }
-        })
-
+        });
     }
+
     render() {
         const _this = this;
         const props = {
@@ -45,19 +60,23 @@ class Home extends Component {
             headers: {
                 authorization: 'authorization-text',
             },
-            showUploadList:false,
+            showUploadList: false,
             onChange(info) {
                 if (info.file.status !== 'uploading') {
                     console.log(info.file, info.fileList);
                 }
                 if (info.file.status === 'done') {
-                    enclosure({serviceId:'fileServiceImpl',method:'addFile',param:info.file.response.data}).then((e)=>{
-                        if(e.status==='1'){
+                    enclosure({
+                        serviceId: 'fileServiceImpl',
+                        method: 'addFile',
+                        param: info.file.response.data
+                    }).then((e) => {
+                        if (e.status === '1') {
                             message.success(`${info.file.name} file uploaded successfully`);
                         }
                     })
                 } else if (info.file.status === 'error') {
-                    if(info.file.response.path.indexOf("login.jsp")!==-1){
+                    if (info.file.response.path.indexOf("login.jsp") !== -1) {
                         _this.context.router.push("/")//session消失，回到登录页
                         return;
                     }
@@ -75,7 +94,7 @@ class Home extends Component {
                     <div className="logo"/>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onClick={this.menuClick.bind(this)}>
                         <Menu.Item key="/todolist">
-                            <Icon type="database" />
+                            <Icon type="database"/>
                             <span className="nav-text">待办事项</span>
                         </Menu.Item>
                         <Menu.Item key="/exception">
@@ -89,6 +108,10 @@ class Home extends Component {
                         <Menu.Item key="/files">
                             <Icon type="file"/>
                             <span className="nav-text">文件列表</span>
+                        </Menu.Item>
+                        <Menu.Item key="/solrFile">
+                            <Icon type="file"/>
+                            <span className="nav-text">solrDocument</span>
                         </Menu.Item>
                         <Menu.Item key="/chat">
                             <Icon type="team"/>
@@ -119,10 +142,10 @@ class Home extends Component {
                             type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                             onClick={this.toggle.bind(this)}
                         />
-                        <span style={{marginLeft:'70%'}}>
+                        <span style={{marginLeft: '70%'}}>
                             <Upload {...props}>
                                 <Button>
-                                    <Icon type="upload" /> Click to Upload
+                                    <Icon type="upload"/> Click to Upload
                                 </Button>
                             </Upload>
                         </span>
@@ -135,4 +158,5 @@ class Home extends Component {
         )
     }
 }
+
 export default Home

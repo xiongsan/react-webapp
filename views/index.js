@@ -8,5 +8,5 @@ import Login from './Login'
 import Register from './Register'
 import SysManage from './SysManage'
 import DataTransform from './DataTransform'
-
-export default {Todolist,Exception,Images,Files,Todo,Chat,Login,Register,SysManage,DataTransform}
+import SolrFile from './SolrFile'
+export default {Todolist,Exception,Images,Files,Todo,Chat,Login,Register,SysManage,DataTransform,SolrFile}

@@ -30,6 +30,7 @@ class App extends Component {
                         <Route path="/chat" component={views.Chat}/>
                         <Route path="/sysManage" component={views.SysManage}/>
                         <Route path="/dataTransForm" component={views.DataTransform}/>
+                        <Route path="/solrFile" component={views.SolrFile}/>
                     </Route>
                 </Router>
             </Provider>
