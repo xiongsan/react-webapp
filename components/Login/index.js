@@ -67,7 +67,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <span className={styles.copyright}>版权所有C 2014-2016 技术支持:江苏飞博软件股份有限公司</span>
+                <span className={styles.copyright}>版权所有C 2014-2016 技术支持:中软国际科技服务有限公司</span>
             </div>
         )
     }

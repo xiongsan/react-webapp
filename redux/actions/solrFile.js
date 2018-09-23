@@ -7,11 +7,11 @@ export function queryFileList(pageNo, param) {
             type: 'file.loading',
             state: {loading: true}
         })
+        param.pageNo=pageNo
+        param.pageSize=getState().file.pageSize
         enclosure({
             serviceId: 'fileServiceImpl',
             method: 'solrService',
-            pageNo,
-            pageSize: getState().file.pageSize,
             param
         }).then((e) => {
             dispatch({
@@ -28,16 +28,18 @@ export function inputChange(value) {
             type: 'file.loading',
             state: {loading: true, inputValue: value}
         })
+        let param={}
+        param.param={fileName:value}
+        param.pageNo=getState().file.current
+        param.pageSize=getState().file.pageSize
         enclosure({
             serviceId: 'fileServiceImpl',
             method: 'solrService',
-            pageNo:1,
-            pageSize: getState().file.pageSize,
-            param: {fileName: value}
+            param
         }).then((e) => {
             dispatch({
                 type: 'file.list',
-                state: {dataSource: e.data, total: e.recordsTotal, loading: false,current: 1}
+                state: {dataSource: e.data, total: e.recordsTotal, loading: false}
             })
         })
     }

@@ -1,8 +1,8 @@
 import {enclosure} from 'enclosure-utils'
 
 
-export function queryFileList(pageNo, param) {
-    return async function (dispatch, getState) {
+export function queryFileList(param) {
+    return async function (dispatch) {
         dispatch({
             type: 'file.loading',
             state: {loading: true}
@@ -10,13 +10,11 @@ export function queryFileList(pageNo, param) {
         enclosure({
             serviceId: 'fileServiceImpl',
             method: 'getFileList',
-            pageNo,
-            pageSize: getState().file.pageSize,
             param
         }).then((e) => {
             dispatch({
                 type: 'file.list',
-                state: {dataSource: e.data, total: e.recordsTotal, loading: false, current: pageNo}
+                state: {dataSource: e.data, total: e.recordsTotal, loading: false, current: param.pageNo}
             })
         })
     }
@@ -28,12 +26,14 @@ export function inputChange(value) {
             type: 'file.loading',
             state: {loading: true, inputValue: value}
         })
+        let param={}
+        param.param={fileName:value}
+        param.pageNo=getState().file.current
+        param.pageSize=getState().file.pageSize
         enclosure({
             serviceId: 'fileServiceImpl',
             method: 'getFileList',
-            pageNo: getState().file.current,
-            pageSize: getState().file.pageSize,
-            param: {fileName: value}
+            param
         }).then((e) => {
             dispatch({
                 type: 'file.list',

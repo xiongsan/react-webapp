@@ -72,11 +72,14 @@ export function deleteTask(param) {
 
 export function queryTodoPage(pageNo) {
     return async function (dispatch,getState) {
+        let param={}
+        param.pageNo=pageNo
+        param.pageSize=getState().todo.pageSize
         dispatch({
             type:'todoPage',
             state:{loading:true}
         })
-        enclosure({serviceId:'todoListServiceIml',method:'getPageData',pageNo,pageSize:getState().todo.pageSize,param:{}}).then((e)=>{
+        enclosure({serviceId:'todoListServiceIml',method:'getPageData',param}).then((e)=>{
             dispatch({
                 type:'todoPage',
                 state:{dataSource:e.data,total:e.recordsTotal,loading:false,current:pageNo}
@@ -95,7 +98,7 @@ export function getTodoList(){
     }
 }
 function extractFunction(dispatch,flag){
-    enclosure({serviceId:'todoListServiceIml',method:'todoList'}).then((e)=>{
+    enclosure({serviceId:'todoListServiceIml',method:'todoList',param:{}}).then((e)=>{
         if(e.status==='1'){
             dispatch({
                 type:'todo.TodoList',

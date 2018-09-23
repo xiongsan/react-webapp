@@ -13,11 +13,11 @@ class File extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(actions.queryFileList(1, {}))
+        this.props.dispatch(actions.queryFileList({pageNo:1,pageSize:this.props.pageSize}))
     }
 
     changePage(pageNo) {
-        this.props.dispatch(actions.queryFileList(pageNo, {fileName:this.props.inputValue}))
+        this.props.dispatch(actions.queryFileList({pageNo,pageSize:this.props.pageSize,param:{fileName:this.props.inputValue}}))
     }
 
     changeInput = (e) => {//箭头函数就不需要bind(this)了
