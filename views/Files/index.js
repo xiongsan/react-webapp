@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {Table, Input} from 'antd'
 
 const Search = Input.Search;
-import {enclosure} from 'enclosure-utils'
 import {connect} from 'react-redux'
 import * as actions from 'actions/file'
+import {Popconfirm} from "antd";
 
 class File extends Component {
     constructor(props) {
@@ -24,6 +24,10 @@ class File extends Component {
         this.props.dispatch(actions.inputChange(e.target.value))
     }
 
+    /*这个地方坑的我好惨*/
+    handleDelete=(fileUrl)=>{
+        this.props.dispatch(actions.deleteFile(fileUrl))
+    }
     render() {
         let {pageSize, current, total, dataSource, loading, inputValue} = this.props
         const columns = [
@@ -42,6 +46,17 @@ class File extends Component {
                     const url=`baseController/download/${record.fileName}/${record.fileUrl}`
                     return (
                         <a href={url}>下载</a>
+                    )
+                }
+            },
+            {
+                title:'删除',
+                dataIndex: 'justIndex',
+                render:(text,record)=>{
+                    return (
+                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.fileUrl)}>
+                            <a href="javascript:;">Delete</a>
+                        </Popconfirm>
                     )
                 }
             }
